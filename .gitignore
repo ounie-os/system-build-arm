@@ -1,1 +1,3 @@
 output/
+..config.tmp
+.config.old
