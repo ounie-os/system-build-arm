@@ -9,8 +9,9 @@ SYSTEMTAP_SITE = https://sourceware.org/systemtap/ftp/releases/systemtap-$(SYSTE
 SYSTEMTAP_SOURCE = systemtap-$(SYSTEMTAP_VERSION).tar.gz
 SYSTEMTAP_DEPENDENCIES = zlib elfutils
 
-SYSTEMTAP_INSTALL_STAGING = YES
-
-SYSTEMTAP_INSTALL_TARGET = NO
+ifeq ($(call qstrip,$(BR2_ARCH)),arm)
+SYSTEMTAP_CONF_OPTS = --without-python2-probes
+SYSTEMTAP_CONF_OPTS += --without-python3-probes
+endif
 
 $(eval $(autotools-package))
