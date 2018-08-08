@@ -1,0 +1,4 @@
+config BR2_PACKAGE_SYSTEMTAP
+	bool "systemtap"
+	depends on BR2_PACKAGE_LIBZLIB && BR2_PACKAGE_ELFUTILS
+
