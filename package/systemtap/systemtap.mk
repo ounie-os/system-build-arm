@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-SYSTEMTAP_VERSION = 3.2
-SYSTEMTAP_SITE = https://sourceware.org/systemtap/ftp/releases/systemtap-$(SYSTEMTAP_VERSION).tar.gz
+SYSTEMTAP_VERSION = 3.3
+SYSTEMTAP_SITE = https://sourceware.org/systemtap/ftp/releases
 SYSTEMTAP_SOURCE = systemtap-$(SYSTEMTAP_VERSION).tar.gz
 SYSTEMTAP_DEPENDENCIES = zlib elfutils
 
