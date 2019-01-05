@@ -73,9 +73,11 @@ define OPENSSH_INSTALL_INIT_SYSV
 		$(TARGET_DIR)/etc/init.d/S50sshd
 endef
 
-define OPENSSH_INSTALL_TARGET_CMDS
+define OPENSSH_INSTALL_CONFIG
         $(INSTALL) -D -m 755 package/openssh/sshd_config \
-                $(TARGET_DIR)/etc/ssh
+                $(TARGET_DIR)/etc/ssh/sshd_config
 endef
+
+OPENSSH_POST_INSTALL_TARGET_HOOKS += OPENSSH_INSTALL_CONFIG
 
 $(eval $(autotools-package))
