@@ -5,7 +5,7 @@ set -e
 
 BOARD_DIR="$(dirname $0)"
 WIFI_FIRMWARE="${BOARD_DIR}/brcm"
-WIFI_SCRIPT="${BOARD_DIR}/S99wifi-module"
+WIFI_SCRIPT="${BOARD_DIR}/S99utils"
 
 mkdir -p ${TARGET_DIR}/lib/firmware
 cp -ar ${WIFI_FIRMWARE} ${TARGET_DIR}/lib/firmware
