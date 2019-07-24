@@ -1,0 +1,19 @@
+#! /bin/sh
+
+case "$1" in
+	start)
+		modprobe lan78xx.ko
+		modprobe brcmfmac.ko
+		sleep 2
+		ifconfig eth0 192.168.1.100
+		ifconfig wlan0 192.168.3.100
+		hostapd -B /etc/hostapd.conf
+		;;
+	stop)
+		rmmod brcmfmac.ko
+		rmmod brcmutil.ko
+		;;
+	*)
+		exit 1
+		;;
+esac

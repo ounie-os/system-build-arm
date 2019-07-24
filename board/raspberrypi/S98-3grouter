@@ -1,0 +1,35 @@
+#! /bin/sh
+
+pppd_file="/dev/ttyUSB0"
+WAIT_DELAY=30
+
+case "$1" in
+	start)
+		modprobe brcmfmac.ko
+		modprobe huawei_cdc_ncm
+		sleep 2
+		ifconfig eth0 192.168.1.100
+		ifconfig wlan0 192.168.3.100
+		hostapd -B /etc/hostapd.conf
+		echo 1 > /proc/sys/net/ipv4/ip_forward
+		while [ ${WAIT_DELAY} -gt 0 ]; do
+			if [ -e "$pppd_file" ]; then
+				pppd file /etc/huawei_options connect "/usr/sbin/chat -v -f /etc/huawei_ppp_dialer" &
+				printf "\n"
+				break
+			fi
+			sleep 1
+			printf "ppp not on line...\n"
+			: $((IF_WAIT_DELAY -= 1))
+		done
+		#iptables -F
+		#iptables -t nat -A POSTROUTING -s 192.168.3.0/24 -o eth0 -j MASQUERADE
+		;;
+	stop)
+		rmmod brcmfmac.ko
+		rmmod brcmutil.ko
+		;;
+	*)
+		exit 1
+		;;
+esac
