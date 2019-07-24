@@ -103,6 +103,7 @@ define PPPD_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(PPPD_DIR)/scripts/pon $(TARGET_DIR)/usr/bin/pon
 	$(INSTALL) -D -m 0755 $(PPPD_DIR)/scripts/poff $(TARGET_DIR)/usr/bin/poff
 	$(PPPD_INSTALL_RADIUS)
+	$(INSTALL) -D -m 07555 package/pppd/ppp-script/* $(TARGET_DIR)/etc
 endef
 
 define PPPD_INSTALL_STAGING_CMDS
